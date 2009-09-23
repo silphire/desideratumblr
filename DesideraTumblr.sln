@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 10.00
 # Visual Studio 2008
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DesideraTumblr", "DesideraTumblr\DesideraTumblr.csproj", "{91224F55-4405-4321-AD80-35C9CFEA203A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tumblr", "Tumblr\Tumblr.csproj", "{04A0E361-9D3B-4859-BDD4-72D57D616687}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,6 +15,10 @@ Global
 		{91224F55-4405-4321-AD80-35C9CFEA203A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{91224F55-4405-4321-AD80-35C9CFEA203A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{91224F55-4405-4321-AD80-35C9CFEA203A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{04A0E361-9D3B-4859-BDD4-72D57D616687}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{04A0E361-9D3B-4859-BDD4-72D57D616687}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{04A0E361-9D3B-4859-BDD4-72D57D616687}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{04A0E361-9D3B-4859-BDD4-72D57D616687}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

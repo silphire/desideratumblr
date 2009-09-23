@@ -18,7 +18,6 @@ namespace DesideraTumblr
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-
         }
 
         //
@@ -47,6 +46,18 @@ namespace DesideraTumblr
             VersionForm form = new VersionForm();
             form.ShowDialog(this);
             form.Dispose();
+        }
+
+        private void MainForm_SizeChanged(object sender, EventArgs e)
+        {
+            // コントロールの再配置
+
+            vScrollBarMainForm.Top = menuStripMainForm.Height;
+            vScrollBarMainForm.Height = this.ClientSize.Height - menuStripMainForm.Height - trackBarImageSize.Height;
+            vScrollBarMainForm.Left = this.ClientSize.Width - vScrollBarMainForm.Width;
+
+            trackBarImageSize.Left = this.ClientSize.Width - trackBarImageSize.Width;
+            trackBarImageSize.Top = this.ClientSize.Height - trackBarImageSize.Height;
         }
     }
 }
