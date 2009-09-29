@@ -109,6 +109,12 @@
       <DependentUpon>VersionForm.cs</DependentUpon>
     </Compile>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Tumblr\Tumblr.csproj">
+      <Project>{04A0E361-9D3B-4859-BDD4-72D57D616687}</Project>
+      <Name>Tumblr</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
