@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Tumblr
 {
-    class Post
+    public class Post
     {
         protected string ID_;
         public string ID

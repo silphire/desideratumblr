@@ -5,7 +5,7 @@ using System.Text.RegularExpressions;
 
 namespace Tumblr
 {
-    class Photo : Post
+    public class Photo : Post
     {
         private string DisplayImageURL_;
         public string DisplayImageURL

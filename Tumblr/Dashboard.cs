@@ -8,7 +8,7 @@ using System.Collections.Generic;
 
 namespace Tumblr
 {
-    class Dashboard
+    public class Dashboard
     {
         private CookieCollection LoginCookie;
         private string PrevPageLink;
