@@ -48,6 +48,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ImageData.cs" />
     <Compile Include="ImageManager.cs" />
     <Compile Include="ImageRenderer.cs" />
     <Compile Include="MainForm.cs">
