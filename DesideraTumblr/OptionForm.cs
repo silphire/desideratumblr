@@ -14,6 +14,16 @@ namespace DesideraTumblr
         public OptionForm()
         {
             InitializeComponent();
+
+            loginUsername.AppendText(DesideraTumblr.ParameterSettings.Default.EMail);
+            loginPassword.AppendText(DesideraTumblr.ParameterSettings.Default.Password);
+        }
+
+        private void OkButton_Click(object sender, EventArgs e)
+        {
+            DesideraTumblr.ParameterSettings.Default.EMail = loginUsername.Text;
+            DesideraTumblr.ParameterSettings.Default.Password = loginPassword.Text;
+            DesideraTumblr.ParameterSettings.Default.Save();
         }
     }
 }

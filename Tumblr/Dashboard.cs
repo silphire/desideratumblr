@@ -67,7 +67,7 @@ namespace Tumblr
             // response
             HttpWebResponse response = (HttpWebResponse)request.GetResponse();
             StreamReader responseReader = new StreamReader(response.GetResponseStream(), Encoding.UTF8);
-            string responseData = responseReader.ReadToEnd();   
+            string responseData = responseReader.ReadToEnd();
             responseReader.Close();
             LoginCookie = response.Cookies;
 

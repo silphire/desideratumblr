@@ -29,12 +29,13 @@
         private void InitializeComponent()
         {
             this.menuStripMainForm = new System.Windows.Forms.MenuStrip();
-            this.ファイルFToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.終了QToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.ツールTToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.オプションOToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.ヘルプHToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.バージョン情報VToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.MenuItemFile = new System.Windows.Forms.ToolStripMenuItem();
+            this.MenuItemLogin = new System.Windows.Forms.ToolStripMenuItem();
+            this.MenuItemQuit = new System.Windows.Forms.ToolStripMenuItem();
+            this.MenuItemTool = new System.Windows.Forms.ToolStripMenuItem();
+            this.MenuItemOption = new System.Windows.Forms.ToolStripMenuItem();
+            this.MenuItemHelp = new System.Windows.Forms.ToolStripMenuItem();
+            this.MenuItemVersion = new System.Windows.Forms.ToolStripMenuItem();
             this.vScrollBarMainForm = new System.Windows.Forms.VScrollBar();
             this.trackBarImageSize = new System.Windows.Forms.TrackBar();
             this.menuStripMainForm.SuspendLayout();
@@ -44,59 +45,67 @@
             // menuStripMainForm
             // 
             this.menuStripMainForm.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.ファイルFToolStripMenuItem,
-            this.ツールTToolStripMenuItem,
-            this.ヘルプHToolStripMenuItem});
+            this.MenuItemFile,
+            this.MenuItemTool,
+            this.MenuItemHelp});
             this.menuStripMainForm.Location = new System.Drawing.Point(0, 0);
             this.menuStripMainForm.Name = "menuStripMainForm";
-            this.menuStripMainForm.Size = new System.Drawing.Size(284, 24);
+            this.menuStripMainForm.Size = new System.Drawing.Size(284, 26);
             this.menuStripMainForm.TabIndex = 0;
             this.menuStripMainForm.Text = "menuStrip1";
             // 
-            // ファイルFToolStripMenuItem
+            // MenuItemFile
             // 
-            this.ファイルFToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.終了QToolStripMenuItem});
-            this.ファイルFToolStripMenuItem.Name = "ファイルFToolStripMenuItem";
-            this.ファイルFToolStripMenuItem.Size = new System.Drawing.Size(66, 20);
-            this.ファイルFToolStripMenuItem.Text = "ファイル(&F)";
+            this.MenuItemFile.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.MenuItemLogin,
+            this.MenuItemQuit});
+            this.MenuItemFile.Name = "MenuItemFile";
+            this.MenuItemFile.Size = new System.Drawing.Size(85, 22);
+            this.MenuItemFile.Text = "ファイル(&F)";
             // 
-            // 終了QToolStripMenuItem
+            // MenuItemLogin
             // 
-            this.終了QToolStripMenuItem.Name = "終了QToolStripMenuItem";
-            this.終了QToolStripMenuItem.Size = new System.Drawing.Size(110, 22);
-            this.終了QToolStripMenuItem.Text = "終了(&Q)";
-            this.終了QToolStripMenuItem.Click += new System.EventHandler(this.Quit_Click);
+            this.MenuItemLogin.Name = "MenuItemLogin";
+            this.MenuItemLogin.Size = new System.Drawing.Size(152, 22);
+            this.MenuItemLogin.Text = "ログイン(&L)";
+            this.MenuItemLogin.Click += new System.EventHandler(this.Login_Click);
             // 
-            // ツールTToolStripMenuItem
+            // MenuItemQuit
             // 
-            this.ツールTToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.オプションOToolStripMenuItem});
-            this.ツールTToolStripMenuItem.Name = "ツールTToolStripMenuItem";
-            this.ツールTToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
-            this.ツールTToolStripMenuItem.Text = "ツール(&T)";
+            this.MenuItemQuit.Name = "MenuItemQuit";
+            this.MenuItemQuit.Size = new System.Drawing.Size(152, 22);
+            this.MenuItemQuit.Text = "終了(&Q)";
+            this.MenuItemQuit.Click += new System.EventHandler(this.Quit_Click);
             // 
-            // オプションOToolStripMenuItem
+            // MenuItemTool
             // 
-            this.オプションOToolStripMenuItem.Name = "オプションOToolStripMenuItem";
-            this.オプションOToolStripMenuItem.Size = new System.Drawing.Size(129, 22);
-            this.オプションOToolStripMenuItem.Text = "オプション(&O)";
-            this.オプションOToolStripMenuItem.Click += new System.EventHandler(this.Option_Click);
+            this.MenuItemTool.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.MenuItemOption});
+            this.MenuItemTool.Name = "MenuItemTool";
+            this.MenuItemTool.Size = new System.Drawing.Size(74, 22);
+            this.MenuItemTool.Text = "ツール(&T)";
             // 
-            // ヘルプHToolStripMenuItem
+            // MenuItemOption
             // 
-            this.ヘルプHToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.バージョン情報VToolStripMenuItem});
-            this.ヘルプHToolStripMenuItem.Name = "ヘルプHToolStripMenuItem";
-            this.ヘルプHToolStripMenuItem.Size = new System.Drawing.Size(62, 20);
-            this.ヘルプHToolStripMenuItem.Text = "ヘルプ(&H)";
+            this.MenuItemOption.Name = "MenuItemOption";
+            this.MenuItemOption.Size = new System.Drawing.Size(155, 22);
+            this.MenuItemOption.Text = "オプション(&O)";
+            this.MenuItemOption.Click += new System.EventHandler(this.Option_Click);
             // 
-            // バージョン情報VToolStripMenuItem
+            // MenuItemHelp
             // 
-            this.バージョン情報VToolStripMenuItem.Name = "バージョン情報VToolStripMenuItem";
-            this.バージョン情報VToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
-            this.バージョン情報VToolStripMenuItem.Text = "バージョン情報(&V)";
-            this.バージョン情報VToolStripMenuItem.Click += new System.EventHandler(this.Version_Click);
+            this.MenuItemHelp.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.MenuItemVersion});
+            this.MenuItemHelp.Name = "MenuItemHelp";
+            this.MenuItemHelp.Size = new System.Drawing.Size(75, 22);
+            this.MenuItemHelp.Text = "ヘルプ(&H)";
+            // 
+            // MenuItemVersion
+            // 
+            this.MenuItemVersion.Name = "MenuItemVersion";
+            this.MenuItemVersion.Size = new System.Drawing.Size(178, 22);
+            this.MenuItemVersion.Text = "バージョン情報(&V)";
+            this.MenuItemVersion.Click += new System.EventHandler(this.Version_Click);
             // 
             // vScrollBarMainForm
             // 
@@ -137,14 +146,15 @@
         #endregion
 
         private System.Windows.Forms.MenuStrip menuStripMainForm;
-        private System.Windows.Forms.ToolStripMenuItem ファイルFToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 終了QToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem ツールTToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem オプションOToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem ヘルプHToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem バージョン情報VToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem MenuItemFile;
+        private System.Windows.Forms.ToolStripMenuItem MenuItemQuit;
+        private System.Windows.Forms.ToolStripMenuItem MenuItemTool;
+        private System.Windows.Forms.ToolStripMenuItem MenuItemOption;
+        private System.Windows.Forms.ToolStripMenuItem MenuItemHelp;
+        private System.Windows.Forms.ToolStripMenuItem MenuItemVersion;
         private System.Windows.Forms.VScrollBar vScrollBarMainForm;
         private System.Windows.Forms.TrackBar trackBarImageSize;
+        private System.Windows.Forms.ToolStripMenuItem MenuItemLogin;
     }
 }
 

@@ -11,8 +11,12 @@ namespace DesideraTumblr
 {
     public partial class MainForm : Form
     {
+        private Tumblr.Dashboard dashboard;
+
         public MainForm()
         {
+            dashboard = new Tumblr.Dashboard();
+
             InitializeComponent();
         }
 
@@ -58,6 +62,22 @@ namespace DesideraTumblr
 
             trackBarImageSize.Left = this.ClientSize.Width - trackBarImageSize.Width;
             trackBarImageSize.Top = this.ClientSize.Height - trackBarImageSize.Height;
+        }
+
+        // ログイン時の処理
+        private void Login_Click(object sender, EventArgs e)
+        {
+            ParameterSettings settings = DesideraTumblr.ParameterSettings.Default;
+
+            while (settings.EMail.Length == 0 || settings.Password.Length == 0)
+            {
+                // Eメールアドレスとパスワードを入力させる
+                OptionForm form = new OptionForm();
+                form.ShowDialog(this);
+                form.Dispose();
+            }
+
+            dashboard.Login(settings.EMail, settings.Password);
         }
     }
 }
