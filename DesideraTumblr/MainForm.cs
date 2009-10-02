@@ -77,7 +77,11 @@ namespace DesideraTumblr
                 form.Dispose();
             }
 
+            if (settings.LoginCookie.Length > 0)
+                dashboard.LoginCookie = settings.LoginCookie;
             dashboard.Login(settings.EMail, settings.Password);
+            settings.LoginCookie = dashboard.LoginCookie;
+            settings.Save();
         }
     }
 }

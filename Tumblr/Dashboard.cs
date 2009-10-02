@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Net;
 using System.Web;
 using System.Text;
@@ -10,7 +11,35 @@ namespace Tumblr
 {
     public class Dashboard
     {
-        private CookieCollection LoginCookie;
+        private CookieCollection LoginCookie_;
+        public string LoginCookie
+        {
+            get
+            {
+                string sc = "";
+                foreach (Cookie c in LoginCookie_)
+                {
+                    if (sc.Length > 0)
+                        sc += "; ";
+                    sc += c.Name;
+                    sc += "=";
+                    sc += c.Value;
+                }
+                return sc;
+            }
+
+            set
+            {
+                LoginCookie_ = new CookieCollection();
+                foreach (string set in value.Split(';')) 
+                {
+                    string[] elems = set.Split('=');
+                    Cookie c = new Cookie(elems[0].Trim(), elems[1].Trim(), "/", "tumblr.com");
+                    LoginCookie_.Add(c);
+                }
+            }
+        }
+
         private string PrevPageLink;
         private string NextPageLink;
         private int CurrentPage_;
@@ -51,8 +80,8 @@ namespace Tumblr
             request.ContentType = "application/x-www-form-urlencoded";
             request.CookieContainer = new CookieContainer();
 
-            if(LoginCookie != null)
-                request.CookieContainer.Add(LoginCookie);
+            if (LoginCookie_ != null)
+                request.CookieContainer.Add(LoginCookie_);
 
             // request parameters
             string param = "email=" + HttpUtility.UrlEncode(username);
@@ -69,7 +98,10 @@ namespace Tumblr
             StreamReader responseReader = new StreamReader(response.GetResponseStream(), Encoding.UTF8);
             string responseData = responseReader.ReadToEnd();
             responseReader.Close();
-            LoginCookie = response.Cookies;
+
+            LoginCookie_ = response.Cookies;
+            if (LoginCookie_.Count <= 1)
+                throw new LoginException("ログインに失敗しました。メールアドレスとパスワードを確認して下さい。");
 
             LoadPage("/dashboard/");
         }
@@ -86,7 +118,7 @@ namespace Tumblr
             string content = "";
             int nRead;
 
-            if (LoginCookie == null || LoginCookie.Count == 0)
+            if (LoginCookie_ == null || LoginCookie_.Count == 0)
                 return;
 
             // Dashboardのページを読み込む
@@ -97,7 +129,7 @@ namespace Tumblr
 
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
             request.CookieContainer = new CookieContainer();
-            request.CookieContainer.Add(LoginCookie);
+            request.CookieContainer.Add(LoginCookie_);
             HttpWebResponse response = (HttpWebResponse)request.GetResponse();
             Stream responseStream = response.GetResponseStream();
 
@@ -112,11 +144,12 @@ namespace Tumblr
         }
 
         /// <summary>
-        /// Dashboardの1エントリ分を抜き出す
+        /// Dashboardの1ページ分を抜き出す
         /// </summary>
         /// <param name="content">HTMLが入っている文字列</param>
         /// <param name="position">解析を始める文字列中の位置</param>
-        private void ReadTumblogs(string content, int position)
+        /// <returns>取得したエントリの数</returns>
+        private int ReadTumblogs(string content, int position)
         {
             int index, terminal;
             List<Post> posts = new List<Post>();
@@ -125,11 +158,11 @@ namespace Tumblr
             // "<!-- START POSTS -->"まで読み飛ばす
             index = content.IndexOf("<!-- START POSTS -->");
             if (index == -1)
-                return;
+                throw new ParseException();
 
             terminal = content.IndexOf("<!-- END POSTS -->");
             if (terminal == -1)
-                return;
+                throw new ParseException();
 
             Regex entryclass = new Regex(@"((\w+)\s+)*");
             Regex idval = new Regex(@"(\d+)""");
@@ -194,6 +227,7 @@ namespace Tumblr
             LoadNeighborPages(ref content, ref index);
 
             Posts_ = posts;
+            return posts.Count;
         }
 
         /// <summary>
