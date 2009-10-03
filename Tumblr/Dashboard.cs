@@ -95,13 +95,19 @@ namespace Tumblr
 
             // response
             HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-            StreamReader responseReader = new StreamReader(response.GetResponseStream(), Encoding.UTF8);
-            string responseData = responseReader.ReadToEnd();
-            responseReader.Close();
+            if((response.StatusCode == HttpStatusCode.Found || response.StatusCode == HttpStatusCode.RedirectKeepVerb) && response.Headers["Location"].StartsWith("/login")) {
+                throw new LoginException();
+            } else {
+                // 使わないので読み捨てる
+                (new StreamReader(response.GetResponseStream())).ReadToEnd();
+                //StreamReader responseReader = new StreamReader(response.GetResponseStream(), Encoding.UTF8);
+                //string responseData = responseReader.ReadToEnd();
+                //responseReader.Close();
+            }
 
             LoginCookie_ = response.Cookies;
             if (LoginCookie_.Count <= 1)
-                throw new LoginException("ログインに失敗しました。メールアドレスとパスワードを確認して下さい。");
+                throw new LoginException();
 
             LoadPage("/dashboard/");
         }

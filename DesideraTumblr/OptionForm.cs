@@ -15,15 +15,17 @@ namespace DesideraTumblr
         {
             InitializeComponent();
 
-            loginUsername.AppendText(DesideraTumblr.ParameterSettings.Default.EMail);
-            loginPassword.AppendText(DesideraTumblr.ParameterSettings.Default.Password);
+            ParameterSettings s = DesideraTumblr.ParameterSettings.Default;
+            loginUsername.AppendText(s.EMail);
+            loginPassword.AppendText(s.Password);
         }
 
         private void OkButton_Click(object sender, EventArgs e)
         {
-            DesideraTumblr.ParameterSettings.Default.EMail = loginUsername.Text;
-            DesideraTumblr.ParameterSettings.Default.Password = loginPassword.Text;
-            DesideraTumblr.ParameterSettings.Default.Save();
+            ParameterSettings s = DesideraTumblr.ParameterSettings.Default;
+            s.EMail = loginUsername.Text;
+            s.Password = loginPassword.Text;
+            s.Save();
         }
     }
 }

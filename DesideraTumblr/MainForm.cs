@@ -64,7 +64,7 @@ namespace DesideraTumblr
             trackBarImageSize.Top = this.ClientSize.Height - trackBarImageSize.Height;
         }
 
-        // ログイン時の処理
+        // (明示的な)ログイン時の処理
         private void Login_Click(object sender, EventArgs e)
         {
             ParameterSettings settings = DesideraTumblr.ParameterSettings.Default;

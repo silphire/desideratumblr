@@ -7,7 +7,7 @@ namespace Tumblr
 {
     public class LoginException : Exception
     {
-        public LoginException()
+        public LoginException() : base("ログインに失敗しました。メールアドレスとパスワードを確認して下さい。")
         {
         }
 
