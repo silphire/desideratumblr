@@ -67,6 +67,9 @@ namespace Tumblr
             NextPageLink = "";
         }
 
+        public delegate void ChallengeDelegate(out string email, out string password);
+        public ChallengeDelegate Challenge;
+
         /// <summary>
         /// Tumblrにログインするメソッド
         /// </summary>
@@ -92,6 +95,7 @@ namespace Tumblr
             Stream requestStream = request.GetRequestStream();
             requestStream.Write(byteparam, 0, byteparam.Length);
             requestStream.Close();
+            requestStream.Dispose();
 
             // response
             HttpWebResponse response = (HttpWebResponse)request.GetResponse();
@@ -99,10 +103,12 @@ namespace Tumblr
                 throw new LoginException();
             } else {
                 // 使わないので読み捨てる
-                (new StreamReader(response.GetResponseStream())).ReadToEnd();
+                StreamReader responseReader = new StreamReader(response.GetResponseStream());
+                responseReader.ReadToEnd();
                 //StreamReader responseReader = new StreamReader(response.GetResponseStream(), Encoding.UTF8);
                 //string responseData = responseReader.ReadToEnd();
-                //responseReader.Close();
+                responseReader.Close();
+                responseReader.Dispose();
             }
 
             LoginCookie_ = response.Cookies;
@@ -144,6 +150,9 @@ namespace Tumblr
                 nRead = responseStream.Read(partialContent, 0, partialContent.Length);
                 content += Encoding.UTF8.GetString(partialContent, 0, nRead);
             } while (nRead > 0);
+
+            responseStream.Close();
+            responseStream.Dispose();
 
             // ステートマシンの開始
             ReadTumblogs(content, 0);
@@ -286,6 +295,22 @@ namespace Tumblr
             }
 
             index = endIndex;
+        }
+
+        private void ReLogin()
+        {
+            if (Challenge == null)
+            {
+                throw new LoginException();
+            }
+            else
+            {
+                string email = "";
+                string password = "";
+
+                Challenge(out email, out password);
+                Login(email, password); // TODO: ログインに失敗した時に再ログインする/しない
+            }
         }
 
         /// <summary>
